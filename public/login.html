@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Login | Cortex AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+</head>
+
+<body>
+    <div class="entry-label">Restricted</div>
+
+    <div class="hero" style="justify-content: center; align-items: center;">
+        <div class="hero-gradient" aria-hidden="true"></div>
+
+        <section class="auth-container">
+            <div class="section-header" style="text-align: center; margin-bottom: 1.5rem;">
+                <a href="/"><img src="logo.png" alt="Genoplexity" width="150"
+                        style="margin-bottom: 1rem;" /></a>
+                <p class="eyebrow">Secure Access</p>
+                <h2>Doctor Login</h2>
+            </div>
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="doctor@clinic.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required />
+                </div>
+                <button type="submit" class="btn primary">Access Portal</button>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <a href="/" style="color: var(--muted); font-size: 0.9rem;">&larr; Back to Home</a>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

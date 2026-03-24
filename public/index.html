@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Genoplexity calculates donor–recipient compatibility with biomathematics, CKD-EPI metrics, and AI-driven insights." />
+  <title>Cortex AI | Predictive Organ Compatibility</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="scripts.js"></script>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+</head>
+
+<body>
+  <div class="entry-label">Entry</div>
+  <header class="hero" id="hero">
+    <nav class="navbar">
+      <a class="logo" href="#hero"><img src="logo.png" alt="Cortex AI" width="50" /></a>
+      <div class="nav-main">
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#problem" data-i18n="nav.problem">Problem</a></li>
+          <li><a href="#features" data-i18n="nav.features">Features</a></li>
+          <li><a href="#how-it-works" data-i18n="nav.how">How it works</a></li>
+          <li><a href="#achievements" data-i18n="nav.achievements">Achievements</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+          <li><a href="/login" class="btn small ghost" data-i18n="nav.login">Login</a></li>
+        </ul>
+        <div class="lang-switch" role="group" aria-label="Language toggle">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ru">RU</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero-grid">
+      <div class="hero-text" data-scroll>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Predictive transplant intelligence</p>
+        <h1 data-i18n="hero.title">Predicting organ compatibility with precision.</h1>
+        <p class="hero-copy" data-i18n="hero.description">
+          Cortex AI uses biomathematics, CKD-EPI metrics, and AI-driven analysis to calculate a donor–recipient
+          compatibility index and provide clear medical explanations, risk hypotheses, and transplant recommendations.
+        </p>
+        <p class="hero-mission" data-i18n="hero.mission">
+          Our mission is simple: reduce rejection, save organs, save lives.
+        </p>
+        <div class="core-advantages">
+          <h4 data-i18n="hero.coreTitle">Core advantages</h4>
+          <ul>
+            <li>
+              <span class="icon-badge">Σ</span>
+              <span data-i18n="hero.adv1">Unique CKD-EPI + AI predictive formula</span>
+            </li>
+            <li>
+              <span class="icon-badge">⚗️</span>
+              <span data-i18n="hero.adv2">Analysis of 25+ genetic, immunologic, and metabolic markers</span>
+            </li>
+            <li>
+              <span class="icon-badge">⏱</span>
+              <span data-i18n="hero.adv3">AI forecast of compatibility and rejection risk</span>
+            </li>
+            <li>
+              <span class="icon-badge">API</span>
+              <span data-i18n="hero.adv4">API integration with clinics and biobanks</span>
+            </li>
+          </ul>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="#contact" data-i18n="hero.ctaPrimary">Request a demo</a>
+          <a class="btn ghost" href="#how-it-works" data-i18n="hero.ctaSecondary">See how it works</a>
+        </div>
+      </div>
+      <div class="hero-visual" data-scroll aria-label="Compatibility forecast preview">
+        <div class="compatibility-card">
+          <p class="meta-label" data-i18n="hero.cardTitle">Real-time compatibility gauge</p>
+          <div class="gauge">
+            <svg viewBox="0 0 120 60" role="img" aria-label="compatibility gauge">
+              <path d="M10 55 Q60 5 110 55" class="gauge-arc"></path>
+              <circle class="gauge-indicator" cx="60" cy="55" r="6"></circle>
+            </svg>
+            <div class="gauge-value">
+              <strong>87%</strong>
+              <span data-i18n="hero.cardValue">Projected compatibility</span>
+            </div>
+          </div>
+          <div class="sparkline" aria-hidden="true">
+            <span style="--h:45%"></span>
+            <span style="--h:65%"></span>
+            <span style="--h:75%"></span>
+            <span style="--h:60%"></span>
+            <span style="--h:85%"></span>
+            <span style="--h:72%"></span>
+          </div>
+          <div class="card-foot">
+            <div>
+              <p class="meta-label" data-i18n="hero.cardGenes">Markers tracked</p>
+              <strong>25+</strong>
+            </div>
+            <div>
+              <p class="meta-label" data-i18n="hero.cardRefresh">Model refresh</p>
+              <strong>Hourly</strong>
+            </div>
+          </div>
+        </div>
+        <div class="mini-panels">
+          <article>
+            <span class="tag" data-i18n="hero.panel1.tag">CKD-EPI</span>
+            <h4 data-i18n="hero.panel1.title">Creatinine trend stabilized • 1.02 mg/dL</h4>
+            <p data-i18n="hero.panel1.body">Automatic normalization and confidence trace.</p>
+          </article>
+          <article>
+            <span class="tag" data-i18n="hero.panel2.tag">Immune</span>
+            <h4 data-i18n="hero.panel2.title">HLA-B*08 signal calm</h4>
+            <p data-i18n="hero.panel2.body">Adaptive immune score sits below alert threshold.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="hero-gradient" aria-hidden="true"></div>
+    <div class="hero-gif-overlay" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section id="problem" class="section light">
+      <div class="section-header" data-scroll>
+        <p class="eyebrow" data-i18n="problem.eyebrow">Why it matters</p>
+        <h2 data-i18n="problem.heading">Every year, thousands of organs are lost due to imperfect donor–recipient
+          matching.</h2>
+        <p data-i18n="problem.copy1">
+          24,000 organs are lost annually due to incorrect compatibility assessment. 280,000 transplant surgeries are
+          performed worldwide, and up to 33.8% face immune rejection. Current compatibility methods rely on manual
+          evaluation
+          or outdated formulas that ignore thousands of hidden biological factors.
+        </p>
+        <p data-i18n="problem.copy2">
+          As a result, doctors often receive incomplete data, and rejection becomes visible only when damage has already
+          started. Cortex AI changes this — by calculating compatibility through genetics, metabolism, CKD-EPI, and
+          AI.
+        </p>
+      </div>
+      <div class="stat-grid" data-scroll>
+        <article>
+          <span class="stat-value" data-i18n="problem.stat1.value">24,000</span>
+          <p data-i18n="problem.stat1.label">Organs lost annually due to incorrect compatibility assessment.</p>
+        </article>
+        <article>
+          <span class="stat-value" data-i18n="problem.stat2.value">280,000</span>
+          <p data-i18n="problem.stat2.label">Transplant surgeries performed worldwide every year.</p>
+        </article>
+        <article>
+          <span class="stat-value" data-i18n="problem.stat3.value">33.8%</span>
+          <p data-i18n="problem.stat3.label">Face immune rejection without earlier insights.</p>
+        </article>
+        <article>
+          <span class="stat-value" data-i18n="problem.stat4.value">4 data layers</span>
+          <p data-i18n="problem.stat4.label">Genetics, immunology, metabolism, and clinical CKD-EPI in one model.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="section-header" data-scroll>
+        <p class="eyebrow" data-i18n="features.eyebrow">Recognition</p>
+        <h2 data-i18n="features.heading">Trusted by global innovation arenas.</h2>
+      </div>
+      <div class="slider awards" data-scroll>
+        <button class="slider-control prev" aria-label="Previous recognition">←</button>
+        <div class="slider-track">
+          <article class="slide award-card">
+            <span class="award-icon">🏆</span>
+            <p class="award-label" data-i18n="features.card1.label">Finalists</p>
+            <h3 data-i18n="features.card1.title">Startup World Cup 2025</h3>
+          </article>
+          <article class="slide award-card">
+            <span class="award-icon">🥇</span>
+            <p class="award-label" data-i18n="features.card2.label">Champions</p>
+            <h3 data-i18n="features.card2.title">Enactus Kazakhstan National Cup ES 2025</h3>
+          </article>
+          <article class="slide award-card">
+            <span class="award-icon">🚀</span>
+            <p class="award-label" data-i18n="features.card3.label">Finalist</p>
+            <h3 data-i18n="features.card3.title">Entrepreneurship World Cup 2025</h3>
+          </article>
+          <article class="slide award-card">
+            <span class="award-icon">🧬</span>
+            <p class="award-label" data-i18n="features.card4.label">AI Sana</p>
+            <h3 data-i18n="features.card4.title">Best BioMedical Startup</h3>
+          </article>
+          <article class="slide award-card">
+            <span class="award-icon">🌍</span>
+            <p class="award-label" data-i18n="features.card5.label">Finalists</p>
+            <h3 data-i18n="features.card5.title">Hult Prize 2025 Regional</h3>
+          </article>
+        </div>
+        <button class="slider-control next" aria-label="Next recognition">→</button>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section light">
+      <div class="section-header" data-scroll>
+        <p class="eyebrow" data-i18n="how.eyebrow">Pipeline</p>
+        <h2 data-i18n="how.heading">Cortex AI analyzes 25+ biological parameters and transforms them into a
+          compatibility forecast.</h2>
+        <p data-i18n="how.copy">
+          From raw omics to clinician-ready insights, the system orchestrates models that stay transparent,
+          self-learning, and easy to integrate.
+        </p>
+      </div>
+      <div class="steps" data-scroll>
+        <article>
+          <span class="step-index">01</span>
+          <h3 data-i18n="how.step1.title">Compatibility formula</h3>
+          <p data-i18n="how.step1.body">
+            A biomathematical model that uses DNA data, HLA-typing, metabolic markers, and blood group parameters to
+            calculate the donor–recipient match index.
+          </p>
+        </article>
+        <article>
+          <span class="step-index">02</span>
+          <h3 data-i18n="how.step2.title">AI agent</h3>
+          <p data-i18n="how.step2.body">
+            The AI module delivers risk analysis, compatibility hypotheses, and structured recommendations for the
+            clinician.
+          </p>
+        </article>
+        <article>
+          <span class="step-index">03</span>
+          <h3 data-i18n="how.step3.title">Self-learning engine</h3>
+          <p data-i18n="how.step3.body">
+            The system continuously trains on real transplant history, making every new prediction more accurate.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="achievements" class="section">
+      <div class="section-header" data-scroll>
+        <p class="eyebrow" data-i18n="achievements.eyebrow">Impact indicators</p>
+        <h2 data-i18n="achievements.heading">From pilot wards to national registries.</h2>
+      </div>
+      <div class="slider" data-scroll data-autoplay="true" data-interval="7000">
+        <button class="slider-control prev" aria-label="Previous slide">←</button>
+        <div class="slider-track">
+          <article class="slide">
+            <span class="tag" data-i18n="achievements.slide1.tag">Kidney cohort</span>
+            <h3 data-i18n="achievements.slide1.title">24-day earlier compatibility clarity</h3>
+            <p data-i18n="achievements.slide1.body">
+              Multi-center pilots show Genoplexity surfaces rejection risk almost a month before invasive biopsies.
+            </p>
+          </article>
+          <article class="slide">
+            <span class="tag" data-i18n="achievements.slide2.tag">Clinician UX</span>
+            <h3 data-i18n="achievements.slide2.title">98% trust in generated explanations</h3>
+            <p data-i18n="achievements.slide2.body">
+              Narrative insights shorten tumor board reviews and satisfy regulatory evidence requests.
+            </p>
+          </article>
+          <article class="slide">
+            <span class="tag" data-i18n="achievements.slide3.tag">Data ops</span>
+            <h3 data-i18n="achievements.slide3.title">API-ready for biobanks and EHRs</h3>
+            <p data-i18n="achievements.slide3.body">
+              Standardized endpoints connect to CKD-EPI labs, HLA labs, and transplant registries in days.
+            </p>
+          </article>
+          <article class="slide">
+            <span class="tag" data-i18n="achievements.slide4.tag">Risk</span>
+            <h3 data-i18n="achievements.slide4.title">False alarm rate below 3%</h3>
+            <p data-i18n="achievements.slide4.body">
+              Human-in-the-loop calibration keeps alerts precise, saving staff from fatigue.
+            </p>
+          </article>
+        </div>
+        <button class="slider-control next" aria-label="Next slide">→</button>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="footer">
+    <div class="exit-label">Exit</div>
+    <div class="footer-grid">
+      <div>
+        <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+        <h3 data-i18n="contact.heading">Ready for a pilot?</h3>
+        <ul class="contact-list">
+          <li>
+            <span data-i18n="contact.emailLabel">Email:</span>
+            <a href="mailto:hello@genoplexity.bio">contact@cortex.ai</a>
+          </li>
+          <li data-i18n="contact.address">HQ: Astana, Kazakhstan</li>
+          <li data-i18n="contact.press">Press: press@cortexai.bio</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow" data-i18n="contact.policyTitle">Policies</p>
+        <ul class="policy-list">
+          <li><a href="#" data-i18n="contact.license">License</a></li>
+          <li><a href="#" data-i18n="contact.privacy">Privacy policy</a></li>
+          <li><a href="#" data-i18n="contact.terms">Terms of service</a></li>
+          <li><a href="#" data-i18n="contact.cookies">Cookie policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow" data-i18n="contact.statusTitle">Status</p>
+        <p data-i18n="contact.statusBody">
+          Cortex AI is in limited release with select transplant centers. Reach out to join the early access cohort.
+        </p>
+        <a class="btn small" href="#hero" data-i18n="contact.backToTop">Back to top</a>
+      </div>
+    </div>
+    <p class="footnote">
+      © <span id="year"></span>
+      <span data-i18n="contact.footnote">Cortex AI. Built with empathy, espresso, and a dash of innovation.</span>
+    </p>
+  </footer>
+</body>
+
+</html>

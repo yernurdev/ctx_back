@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Dashboard | Cortex AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="entry-label">Clinical Portal</div>
+    <header class="navbar" style="padding: 1rem 2rem;">
+        <a class="logo" href="index.html"><img src="logo.png" alt="Cortex AI" width="50" /></a>
+        <div class="nav-main">
+            <a href="index.html" class="btn small ghost">Logout</a>
+        </div>
+    </header>
+
+    <main style="margin-top: 2rem; padding: 0 2rem;">
+        <section class="section">
+            <div class="section-header" style="text-align: center;">
+                <p class="eyebrow">Comprehensive Assessment</p>
+                <h2>Donor–Recipient Match Analysis</h2>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+                
+                <!-- Donor Column -->
+                <div class="ai-card" style="background: var(--surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border);">
+                    <h3 style="border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">1. Donor Profile</h3>
+                    
+                    <div class="upload-block" style="text-align: center; border: 2px dashed var(--border); padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <input type="file" id="donor-file" accept=".pdf" style="display: none;" />
+                        <button type="button" class="btn secondary" onclick="document.getElementById('donor-file').click()">Upload Donor PDF</button>
+                        <p id="donor-upload-status" style="margin-top: 1rem; color: var(--accent); font-weight: 500; font-size: 0.9rem;"></p>
+                    </div>
+
+                    <div id="donor-results" style="display: none;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;">
+                                <span style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase;">KDPI Score</span>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--text);" id="res-kdpi">--</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;">
+                                <span style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase;">Organ Quality</span>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);" id="res-quality">--</div>
+                            </div>
+                        </div>
+                        
+                        <div style="height: 200px; position: relative;">
+                            <canvas id="donorChart"></canvas>
+                        </div>
+                        
+                        <button class="btn ghost small mt-2" onclick="toggleParams('donor')" style="width: 100%; margin-top: 1rem;">Clinical Parameters</button>
+                        <div id="donor-params-list" style="display: none; margin-top: 1rem; grid-template-columns: 1fr 1fr; gap: 0.8rem; font-size: 0.85rem; max-height: 200px; overflow-y: auto;">
+                            <!-- JS injected -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipient Column -->
+                <div class="ai-card" style="background: var(--surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border);">
+                    <h3 style="border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">2. Recipient Profile</h3>
+                    
+                    <div class="upload-block" style="text-align: center; border: 2px dashed var(--border); padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <input type="file" id="recipient-file" accept=".pdf" style="display: none;" />
+                        <button type="button" class="btn secondary" onclick="document.getElementById('recipient-file').click()">Upload Recipient PDF</button>
+                        <p id="recipient-upload-status" style="margin-top: 1rem; color: var(--accent); font-weight: 500; font-size: 0.9rem;"></p>
+                    </div>
+
+                    <div id="recipient-results" style="display: none;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;">
+                                <span style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase;">CKD-EPI</span>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--text);" id="res-ckdepi">--</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;">
+                                <span style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase;">Risk Level</span>
+                                <div style="font-size: 1.5rem; font-weight: 700;" id="res-risk">--</div>
+                            </div>
+                        </div>
+
+                        <div style="height: 200px; position: relative;">
+                            <canvas id="recipientChart"></canvas>
+                        </div>
+                        
+                        <button class="btn ghost small mt-2" onclick="toggleParams('recipient')" style="width: 100%; margin-top: 1rem;">Clinical Parameters</button>
+                        <div id="recipient-params-list" style="display: none; margin-top: 1rem; grid-template-columns: 1fr 1fr; gap: 0.8rem; font-size: 0.85rem; max-height: 200px; overflow-y: auto;">
+                            <!-- JS injected -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Compatibility Analysis (Appears when BOTH are ready) -->
+            <div id="final-match-results" class="ai-analysis hidden" style="background: rgba(0, 240, 255, 0.05); border: 1px solid var(--accent); padding: 3rem; border-radius: 16px; text-align: center;">
+                <p class="eyebrow" style="color: var(--accent);">Final Prediction</p>
+                <h2 style="margin-bottom: 1rem;">Estimated Compatibility Score</h2>
+                <div style="font-size: 5rem; font-weight: 700; color: var(--accent); font-family: 'Space Grotesk', sans-serif; margin-bottom: 1rem;" id="final-compat-score">
+                    --%
+                </div>
+                <p style="color: var(--muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem;" id="match-summary">
+                    Please upload both the Donor and Recipient medical reports to generate the final biomathematical match index.
+                </p>
+            </div>
+            
+        </section>
+    </main>
+
+    <script src="js/calculator.js"></script>
+    <script src="js/aiMock.js"></script>
+    <script>
+        document.getElementById('donor-file').addEventListener('change', (e) => {
+            if (e.target.files.length > 0) processUpload('donor', e.target.files[0].name);
+        });
+        document.getElementById('recipient-file').addEventListener('change', (e) => {
+            if (e.target.files.length > 0) processUpload('recipient', e.target.files[0].name);
+        });
+        function toggleParams(role) {
+            const el = document.getElementById(`${role}-params-list`);
+            el.style.display = el.style.display === 'none' ? 'grid' : 'none';
+        }
+    </script>
+</body>
+</html>

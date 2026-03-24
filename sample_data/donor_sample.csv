@@ -1,0 +1,2 @@
+age,creatinine,blood_type,hla,bmi,glucose,cholesterol,blood_pressure_systolic,blood_pressure_diastolic,hemoglobin,weight,height,heart_rate,potassium,sodium,calcium,phosphorus,albumin,total_protein,ast,alt,alp,bilirubin,wbc,rbc,platelets,hba1c,uric_acid,bun,crp,tsh,vitamin_d,iron
+45,1.02,O+,"A*02:01,B*07:02,C*03:04",24.5,92,180,120,80,14.5,72,171,68,4.1,139,9.4,3.8,4.2,7.1,28,32,85,0.8,6.2,4.8,220,5.4,5.2,18,1.2,2.1,32,88

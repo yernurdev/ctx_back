@@ -59,14 +59,9 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: err.message || 'Internal server error' });
 });
 
-// ── Server Start ───────────────────────────────────────────────────────────────
+// ── MongoDB + Server Start ─────────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
-
-// ── MongoDB Connection ─────────────────────────────────────────────────────────
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(async () => {
@@ -84,8 +79,12 @@ mongoose
       });
       console.log(`✅ Demo user created: ${process.env.DEMO_EMAIL || 'demo@cortexai.bio'}`);
     }
+
+    server.listen(PORT, () => {
+      console.log(`🚀 Server running on http://localhost:${PORT}`);
+    });
   })
   .catch((err) => {
     console.error('❌ MongoDB connection failed:', err.message);
-    console.warn('⚠️ Server is running without database connection!');
+    process.exit(1);
   });

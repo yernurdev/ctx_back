@@ -9,6 +9,7 @@ const rateLimit = require('express-rate-limit');
 
 const authRoutes = require('./routes/auth');
 const analysisRoutes = require('./routes/analysis');
+const reportRoutes = require('./routes/report');
 
 const app = express();
 const server = http.createServer(app);
@@ -47,6 +48,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok', timestamp: new Date() 
 // ── Routes ────────────────────────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);
 app.use('/api/analysis', analysisRoutes);
+app.use('/api/report', reportRoutes);
 
 // ── 404 Handler ───────────────────────────────────────────────────────────────
 app.use((req, res) => {

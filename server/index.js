@@ -15,9 +15,15 @@ const app = express();
 const server = http.createServer(app);
 
 // ── Socket.io ────────────────────────────────────────────────────────────────
+const ALLOWED_ORIGINS = [
+  process.env.CLIENT_ORIGIN || 'https://cortexai-agent.web.app',
+  'http://localhost:5173',
+  'http://localhost:4173',
+];
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_ORIGIN || '*',
+    origin: ALLOWED_ORIGINS,
     methods: ['GET', 'POST'],
   },
 });
@@ -30,7 +36,7 @@ io.on('connection', (socket) => {
 
 // ── Security Middleware ───────────────────────────────────────────────────────
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || '*', credentials: true }));
+app.use(cors({ origin: ALLOWED_ORIGINS, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -132,7 +132,6 @@ router.get('/history', authMiddleware, async (req, res) => {
   try {
     const analyses = await Analysis.find({ userId: req.user.userId })
       .sort({ createdAt: -1 })
-      .limit(20)
       .select('-donor -recipient'); // Don't send full patient data in list
     res.json({ success: true, analyses });
   } catch (err) {

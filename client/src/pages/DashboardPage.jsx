@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { uploadAnalysis, getHistory } from '../services/api';
+import { uploadAnalysis, getHistory, downloadReport } from '../services/api';
 import { io } from 'socket.io-client';
 import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
@@ -90,6 +90,8 @@ export default function DashboardPage() {
   const [showDonorParams, setShowDonorParams] = useState(false);
   const [showRecipientParams, setShowRecipientParams] = useState(false);
   const [realtimeAlert, setRealtimeAlert] = useState(null);
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [pdfError, setPdfError] = useState('');
 
   // Load history
   useEffect(() => {
@@ -274,20 +276,50 @@ export default function DashboardPage() {
                   }
                 </button>
                 {result && (
-                  <button
-                    className="btn ghost"
-                    onClick={() => {
-                      setDonorFile(null);
-                      setRecipientFile(null);
-                      setResult(null);
-                      setShowDonorParams(false);
-                      setShowRecipientParams(false);
-                    }}
-                  >
-                    Clear Files
-                  </button>
+                  <>
+                    <button
+                      className="btn ghost"
+                      onClick={() => {
+                        setDonorFile(null);
+                        setRecipientFile(null);
+                        setResult(null);
+                        setShowDonorParams(false);
+                        setShowRecipientParams(false);
+                        setPdfError('');
+                      }}
+                    >
+                      Clear Files
+                    </button>
+                    <button
+                      className="btn primary"
+                      disabled={pdfLoading}
+                      onClick={async () => {
+                        setPdfLoading(true);
+                        setPdfError('');
+                        try {
+                          await downloadReport(result.analysisId);
+                        } catch (e) {
+                          setPdfError('PDF download failed. Please try again.');
+                        } finally {
+                          setPdfLoading(false);
+                        }
+                      }}
+                      style={{ background: '#1a6fbb', color: '#fff', boxShadow: 'none' }}
+                    >
+                      {pdfLoading
+                        ? <><span className="spinner" style={{ marginRight: '0.5rem' }} />Generating PDF...</>
+                        : '📄 Download PDF Report'
+                      }
+                    </button>
+                  </>
                 )}
               </div>
+
+              {pdfError && (
+                <div className="auth-error" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+                  ⚠️ {pdfError}
+                </div>
+              )}
 
               {/* Results */}
               {result && (

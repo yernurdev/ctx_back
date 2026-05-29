@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // i18n strings
 const I18N = {
@@ -229,7 +230,7 @@ export default function LandingPage() {
               </ul>
             </div>
             <div className="hero-actions">
-              <a className="btn primary" href="#contact">{t('hero.ctaPrimary')}</a>
+              <Link className="btn primary" to="/demo">{t('hero.ctaPrimary')}</Link>
               <a className="btn ghost" href="#how-it-works">{t('hero.ctaSecondary')}</a>
             </div>
           </div>

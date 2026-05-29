@@ -33,7 +33,7 @@ export default function LoginPage() {
 
         <section className="auth-container">
           <div className="section-header" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <a href="/"><img src="/logo.png" alt="Cortex AI" width={150} style={{ marginBottom: '1rem', height: 'auto', objectFit: 'contain' }} /></a>
+            <a href="/"><img src="/logo.png" alt="Cortex AI" width={100} style={{ display: 'block', margin: '0 auto 1rem', height: 'auto', objectFit: 'contain' }} /></a>
             <p className="eyebrow">Secure Access</p>
             <h2>Doctor Login</h2>
           </div>
@@ -46,6 +46,7 @@ export default function LoginPage() {
               <input
                 id="email"
                 type="email"
+                autoComplete="email"
                 placeholder="doctor@clinic.com"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
@@ -57,6 +58,7 @@ export default function LoginPage() {
               <input
                 id="password"
                 type="password"
+                autoComplete="current-password"
                 placeholder="••••••••"
                 value={password}
                 onChange={e => setPassword(e.target.value)}

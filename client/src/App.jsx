@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
+import DemoPage from './pages/DemoPage';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/demo" element={<DemoPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route
             path="/dashboard"

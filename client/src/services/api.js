@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: API_URL,
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -12,11 +14,11 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Redirect on 401
 api.interceptors.response.use(
   (res) => res,
   (error) => {
-    if (error.response?.status === 401) {
+    const isAuthRoute = error.config?.url?.includes('/auth/login') || error.config?.url?.includes('/auth/me');
+    if (error.response?.status === 401 && !isAuthRoute) {
       localStorage.removeItem('cortex_token');
       localStorage.removeItem('cortex_user');
       window.location.href = '/login';
@@ -45,3 +47,21 @@ export const uploadAnalysis = (donorFile, recipientFile) => {
 
 export const getHistory = () => api.get('/analysis/history');
 export const getAnalysis = (id) => api.get(`/analysis/${id}`);
+
+export const downloadReport = async (analysisId) => {
+  const token = localStorage.getItem('cortex_token');
+  const baseUrl = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api';
+  const response = await fetch(`${baseUrl}/report/${analysisId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!response.ok) throw new Error('Failed to generate PDF');
+  const blob = await response.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `cortexai-report-${analysisId}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+};
